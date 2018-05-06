@@ -45,3 +45,28 @@ y_pred = regressor.predict(X_test)
 # Building the optimal model using backward elimination
 import statsmodels.formula.api as sm
 X = np.append(arr = np.ones((50, 1)).astype(int), values = X, axis = 1)
+
+## Only contain independent variables that are statistically significant
+X_opt = X[:,[0, 1, 2, 3, 4, 5]]
+regressor_ols = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_ols.summary()
+
+## 2nd Iteration
+X_opt = X[:,[0, 1, 3, 4, 5]]
+regressor_ols = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_ols.summary()
+
+## 3rdIteration
+X_opt = X[:,[0 , 3, 4, 5]]
+regressor_ols = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_ols.summary()
+
+## 4th Iteration
+X_opt = X[:,[0 , 3, 5]]
+regressor_ols = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_ols.summary()
+
+## 5th Iteration
+X_opt = X[:,[0 , 3]]
+regressor_ols = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_ols.summary()
